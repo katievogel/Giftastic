@@ -1,0 +1,40 @@
+body {
+    font-family: Helvetica, Arial;
+    background-image: url(tardis-bkgd.jpg);
+    background-repeat: repeat;
+    background-size: cover;
+    background-position: center;
+    color: lightblue;
+  }
+
+.jumbotron {
+    background-color: transparent!important;
+    text-align: center;
+}
+
+.card {
+    max-width: 800px;
+    margin: auto;
+    background-color: transparent!important;
+    align-content: center;
+}
+
+button {
+    margin: 10px;
+    background-color: blue;
+    color: white;
+    border-radius: 5px;
+    border-color: transparent;
+}
+.form-inline {
+    margin: 10px;
+}
+img {
+    margin: 20px;
+}
+
+#gif-me {
+    background-color: blue;
+    color: lightblue;
+    border-color: lightblue;
+}
