@@ -2,7 +2,7 @@ body {
     font-family: Helvetica, Arial;
     background-image: url(tardis-bkgd.jpg);
     background-repeat: repeat;
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     color: lightblue;
   }
