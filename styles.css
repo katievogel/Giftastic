@@ -1,9 +1,10 @@
 body {
     font-family: Helvetica, Arial;
-    background-image: url(tardis-bkgd.jpg);
-    background-repeat: repeat;
-    background-size: contain;
+    background-image: url('tardis-bkgd.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
     background-position: center;
+    background-attachment: fixed;
     color: lightblue;
   }
 
