@@ -2,45 +2,44 @@
 <html lang="en-us">
 
 <head>
-
-  <meta charset="UTF-8">
-  <title>Giftastic!</title>
-  
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="styles.css">
-
-  
-  
-
+    <meta charset="UTF-8">
+    <title>Giftastic!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
 <body>
-        <div class="jumbotron jumbotron-fluid">
-                <div class="container">
-                  <h1 class="display-4">Doctor Who Gifs</h1>
-                  <p class="lead">A collection of gifs through time and space. Click the 'Gif it to Me' button to add more.</p>
-                </div>
-              </div>
-<div class="card">
-    <div class="card-body">
-        <div>
-       </div>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1>Doctor Who Gifs</h1>
+            <p>A collection of gifs through time and space. Enter a search keyword and click the 'Gif it to Me' button to add more buttons.</p>
+        </div>
     </div>
-</div>
-    <div class="card"> 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="new-buttons">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
         <div class="card-body">
             <form class="form-inline">
-                <label class="sr-only" for="inlineFormInputName2"></label>
-                <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Enter a keyword!!">
-                <button id="gif-me" type="button" class="btn btn-success mb-2">Gif it to ME!!!</button>
+                <input type="text" class="form-control" placeholder="Enter a keyword!">
+                <button id="gif-me" type="button" class="btn btn-success">Gif it to Me</button>
             </form>
         </div>
     </div>
-    <div class="card"> 
+    <div class="card">
         <div class="card-body">
             <div id="images">
             </div>
-            
+
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
