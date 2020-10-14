@@ -8,43 +8,47 @@ function makeOneButton(label) {
     $(newButton).attr("type", "button");
     $(newButton).attr("class", "gif-button");
     $(newButton).text(label);
-    $(newButton).click(function () {
-        var keyword = label;
-        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=0flPku5i7SaRbjTl02ZnhKrnYHH6Z4uk&q=Doctor Who " + keyword + "&limit=10&offset=0&rating=G&lang=en";
-        console.log(queryURL);
-
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-            .then(function (response) {
-                for (var j = 0; j < response.data.length; j++) {
-                    var imageUrl = response.data[j].images.original.url;
-                    var gifImage = $("<img>");
-                    var ratings = $("<p>");
-                    gifImage.attr("src", response.data[j].images.original_still.url);
-                    gifImage.attr("data-still", response.data[j].images.original_still.url);
-                    gifImage.attr("data-animate", imageUrl);
-                    gifImage.attr("data-state", "still");
-                    gifImage.attr("alt", "gif image");
-                    $("#images").prepend(gifImage);
-                    $("#images").prepend(ratings, "Rating: " + response.data[j].rating);
-                    $(gifImage).on("click", function () {
-                        var state = $(this).attr("data-state");
-                        if (state === "still") {
-                            $(this).attr("src", $(this).attr("data-animate"));
-                            $(this).attr("data-state", "animate");
-                        } else {
-                            $(this).attr("src", $(this).attr("data-still"));
-                            $(this).attr("data-state", "still");
-                        }
-                    }
-                    )
-                        ;
-                }
-            })
-    });
+    $(newButton).click(() => apiGetCall(label));
     document.querySelector('.new-buttons').append(newButton);
+}
+
+function apiGetCall(label) {
+    var keyword = label;
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=0flPku5i7SaRbjTl02ZnhKrnYHH6Z4uk&q=Doctor%20Who" + keyword + "&limit=10&offset=0&rating=G&lang=en";
+    console.log(queryURL);
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+        .then(gifImgAttrs)
+}
+
+function gifImgAttrs(response) {
+    for (var j = 0; j < response.data.length; j++) {
+        var imageUrl = response.data[j].images.original.url;
+        var gifImage = $("<img>");
+        var ratings = $("<p>");
+        gifImage.attr("src", response.data[j].images.original_still.url);
+        gifImage.attr("data-still", response.data[j].images.original_still.url);
+        gifImage.attr("data-animate", imageUrl);
+        gifImage.attr("data-state", "still");
+        gifImage.attr("alt", "gif image");
+        $("#images").prepend(gifImage);
+        $("#images").prepend(ratings, "Rating: " + response.data[j].rating);
+        $(gifImage).on("click", stillAnimate);
+    }
+}
+
+function stillAnimate() {
+    var state = $(this).attr("data-state");
+    if (state === "still") {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+    } else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+    }
 }
 //function thats uses the makeOneButton function to make the default buttons from the initial array. 
 function makeButtons() {
@@ -67,34 +71,9 @@ $("#gif-me").on("click", function () {
         url: queryURL,
         method: "GET"
     })
-        .then(function (response) {
-            for (var j = 0; j < response.data.length; j++) {
-                var imageUrl = response.data[j].images.original.url;
-                var gifImage = $("<img>");
-                var ratings = $("<p>");
-                gifImage.attr("src", response.data[j].images.original_still.url);
-                gifImage.attr("data-still", response.data[j].images.original_still.url);
-                gifImage.attr("data-animate", imageUrl);
-                gifImage.attr("data-state", "still");
-                gifImage.attr("alt", "gif image");
-                $("#images").prepend(gifImage);
-                $("#images").prepend(ratings, "Rating: " + response.data[j].rating);
-                $(gifImage).on("click", function () {
-                    var state = $(this).attr("data-state");
-                    if (state === "still") {
-                        $(this).attr("src", $(this).attr("data-animate"));
-                        $(this).attr("data-state", "animate");
-                    } else {
-                        $(this).attr("src", $(this).attr("data-still"));
-                        $(this).attr("data-state", "still");
-                    }
-                }); 
-                clearInput(gifSearch);
-                    
-                
-            }
-        })
-    makeOneButton(gifSearch);  
+        .then(gifImgAttrs);
+    clearInput(gifSearch);
+    makeOneButton(gifSearch);
 });
 
 
