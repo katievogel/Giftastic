@@ -1,7 +1,7 @@
 //array of doctor who themed search buttons to appear on the page
 var arrButtons = ["Ninth Doctor", "Tenth Doctor", "Eleventh Doctor", "Twelth Doctor", "Thirteenth Doctor", "Dalek", "Cyberman", "Adipose", "Missy", "Amy Pond", "Rory Williams", "Clara"];
 
-//the function that creates a new button with attributes and click behavior. the click behavior triggers a GET request to the Giphy API to search the keyword. specific characteristics are retrieved that allow the gifs to paused and started again
+//the function that creates a new button with attributes and click behavior. specific characteristics are retrieved that allow the gifs to paused and started again
 function makeOneButton(label) {
     var newButton = document.createElement('button');
     $(newButton).attr("class", "gif-button btn btn-primary");
@@ -11,10 +11,10 @@ function makeOneButton(label) {
     $(newButton).click(() => apiGetCall(label));
     document.querySelector('.new-buttons').append(newButton);
 }
-
+//the click behavior triggers a GET request to the Giphy API to search the keyword.
 function apiGetCall(label) {
     var keyword = label;
-    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=0flPku5i7SaRbjTl02ZnhKrnYHH6Z4uk&q=Doctor%20Who" + keyword + "&limit=10&offset=0&rating=G&lang=en";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=0flPku5i7SaRbjTl02ZnhKrnYHH6Z4uk&q=Doctor+Who+" + keyword + "&limit=10&offset=0&rating=G&lang=en";
     console.log(queryURL);
 
     $.ajax({
@@ -23,7 +23,7 @@ function apiGetCall(label) {
     })
         .then(gifImgAttrs)
 }
-
+//specific characteristics are retrieved that allow the gifs to paused and started again
 function gifImgAttrs(response) {
     for (var j = 0; j < response.data.length; j++) {
         var imageUrl = response.data[j].images.original.url;
@@ -39,7 +39,7 @@ function gifImgAttrs(response) {
         $(gifImage).on("click", stillAnimate);
     }
 }
-
+//function that governs still or animated state
 function stillAnimate() {
     var state = $(this).attr("data-state");
     if (state === "still") {
@@ -62,10 +62,10 @@ makeButtons();
 function clearInput() {
     document.querySelector("form").reset();
 }
-//another GET request on the gif search button to search the API for whatever keyword was entered. pulls back the same characteristics that the other buttons and then creates the new button
+//GET request tied to the gif search button to search the API for whatever keyword was entered. pulls back the same characteristics that the other buttons and then creates the new button
 $("#gif-me").on("click", function () {
     var gifSearch = $("input.form-control").val();
-    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=0flPku5i7SaRbjTl02ZnhKrnYHH6Z4uk&q=Doctor%20Who" + gifSearch + "&limit=10&offset=0&rating=G&lang=en";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=0flPku5i7SaRbjTl02ZnhKrnYHH6Z4uk&q=Doctor+Who+" + gifSearch + "&limit=10&offset=0&rating=G&lang=en";
 
     $.ajax({
         url: queryURL,
