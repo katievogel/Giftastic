@@ -11,6 +11,8 @@ body {
 .jumbotron {
     background-color: transparent!important;
     text-align: center;
+    font-family: 'Fredoka One', cursive;
+    font-size: x-large;
 }
 
 .container {
@@ -23,6 +25,14 @@ body {
     background-color: transparent!important;
     align-content: center;
     border: none;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: large;
+}
+
+.card-text {
+    margin: 15px;
+    text-shadow: 2px 2px 4px gray;
+    
 }
 
 button {
@@ -30,8 +40,17 @@ button {
     background-color: blue;
     color: white;
     border-radius: 5px;
-    border-color: transparent;
+    border: none;
+    padding: 5px 5px;
+    transition-duration: 0.4s;
 }
+
+button:hover {
+    background-color: white;
+    color: midnightblue;
+    border-color: midnightblue;
+}
+
 .form-inline {
     margin: 20px;
 }
@@ -41,6 +60,13 @@ img {
 
 #gif-me {
     background-color: blue;
-    color: lightblue;
-    border-color: lightblue;
+    color: white;
+    border: none;
+}
+
+#gif-me:hover {
+    background-color: white;
+    color: midnightblue;
+    border-color: midnightblue;
+    transition-duration: 0.4s;
 }
